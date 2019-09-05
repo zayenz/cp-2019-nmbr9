@@ -1,0 +1,4 @@
+// the configured options and settings for Nmbr9
+#define Nmbr9_VERSION_MAJOR @Nmbr9_VERSION_MAJOR@
+#define Nmbr9_VERSION_MINOR @Nmbr9_VERSION_MINOR@
+#define Nmbr9_VERSION_PATCH @Nmbr9_VERSION_PATCH@
