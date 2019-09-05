@@ -6,7 +6,15 @@ abstract is submitted to the 25th International Conference on
 Principles and Practice of Constraint Programming 2019.
 
 The code is located in the directory `code/` and is a CMake C++ 17
-project. The code is licensed under the MIT license.
+project. 
+
+
+## Licenses
+
+* The code is licensed under the MIT license.
+* The paper is licensed under CC-BY-SA-4.0.
+
+Relevant license texts are available in the subdirectories.
 
 ## Building and running the experiments
 

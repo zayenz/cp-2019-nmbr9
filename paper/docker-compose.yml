@@ -1,0 +1,4 @@
+paper:
+    build: .
+    volumes:
+    - ".:/build/"
