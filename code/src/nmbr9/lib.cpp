@@ -427,7 +427,17 @@ namespace nmbr9 {
             rel(*this, boards_[0], IRT_GQ, rotated_grid);
         }
 
-        
+        if (options.use_deck_level_symmetry()) {
+            // Symmetry breaking suggested by Ciaran McCreesh at CP2019
+            // When solving the free play type, we can decide that all the tiles on the bottom level are first in the deck.
+            // Unfortunately, this did not seem to help, even though it should.
+            if (options.play_type() == PT_FREE) {
+                for (int c = 0; c < ncards_ - 1; ++c) {
+                    rel(*this, element(tile_level_, deck_[c]) <= element(tile_level_, deck_[c + 1]));
+                }
+            }
+        }
+
         
         // Calculate the score of the solution
         //

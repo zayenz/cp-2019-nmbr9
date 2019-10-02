@@ -19,7 +19,7 @@
 #include <optional>
 
 namespace nmbr9 {
-    class Nmbr9Options : public Gecode::Options {
+        class Nmbr9Options : public Gecode::Options {
         Gecode::Driver::StringOption play_type_;
         Gecode::Driver::UnsignedIntOption max_value_;
         Gecode::Driver::UnsignedIntOption copies_;
@@ -29,6 +29,7 @@ namespace nmbr9 {
         Gecode::Driver::UnsignedIntOption grid_size_;
         Gecode::Driver::UnsignedIntOption max_layers_;
 
+        Gecode::Driver::BoolOption use_deck_level_symmetry_;
     public:
         Nmbr9Options()
         : Options("Nmbr9"),
@@ -38,7 +39,9 @@ namespace nmbr9 {
           deck_size_("deck-size", "the number of cards in the deck, max max-value * copies, default 20", 20),
           number_of_parts_(20),
           grid_size_("grid-size", "the size of the grid, default 20", 20),
-          max_layers_("max-layers", "the maximum layer to use, default 7", 7)
+          max_layers_("max-layers", "the maximum layer to use, default 7", 7),
+          use_deck_level_symmetry_("deck-level-symmetry",
+                  "When true and in free play type, force the levels of cards in deck to be ordered.", false)
         {
             add(play_type_);
             add(max_value_);
@@ -47,6 +50,8 @@ namespace nmbr9 {
 
             add(grid_size_);
             add(max_layers_);
+
+            add(use_deck_level_symmetry_);
 
             play_type_.add(PT_FREE, "free");
             play_type_.add(PT_KNOWN, "known");
@@ -70,35 +75,40 @@ namespace nmbr9 {
             }
         }
 
-        const PlayType play_type() const {
+        [[nodiscard]] PlayType play_type() const {
             return static_cast<const PlayType>(play_type_.value());
         }
 
-        const unsigned int max_value() const {
-            return max_value_.value();
+        [[nodiscard]] int max_value() const {
+            return static_cast<int>(max_value_.value());
         }
 
-        const unsigned int copies() const {
-            return copies_.value();
+        [[nodiscard]] int copies() const {
+            return static_cast<int>(copies_.value());
         }
 
-        const unsigned int deck_size() const {
-            return deck_size_.value();
+        [[nodiscard]] int deck_size() const {
+            return static_cast<int>(deck_size_.value());
         }
 
-        unsigned int number_of_parts() const {
-            return number_of_parts_;
+        [[nodiscard]] int number_of_parts() const {
+            return static_cast<int>(number_of_parts_);
         }
 
-        const unsigned int grid_size() const {
-            return grid_size_.value();
+        [[nodiscard]] int grid_size() const {
+            return static_cast<int>(grid_size_.value());
         }
 
-        const unsigned int max_layers() const {
-            return max_layers_.value();
+        [[nodiscard]] int max_layers() const {
+            return static_cast<int>(max_layers_.value());
         }
 
-        Instance instance() const {
+        [[nodiscard]] bool use_deck_level_symmetry() const {
+            return static_cast<int>(use_deck_level_symmetry_.value());
+        }
+
+
+        [[nodiscard]] Instance instance() const {
             return Instance(play_type(), max_value(), copies(), deck_size(), grid_size());
         }
     };

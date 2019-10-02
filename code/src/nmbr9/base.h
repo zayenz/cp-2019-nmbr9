@@ -25,12 +25,12 @@ namespace nmbr9 {
         const int wh_;
     public:
         Instance(PlayType play_type, int max_value, int copies, int deck_size, int wh);
-        const PlayType play_type() const;
-        const int max_value() const;
-        const int copies() const;
-        const int deck_size() const;
-        const int number_of_parts() const;
-        const int wh() const;
+        [[nodiscard]] const PlayType play_type() const;
+        [[nodiscard]] const int max_value() const;
+        [[nodiscard]] const int copies() const;
+        [[nodiscard]] const int deck_size() const;
+        [[nodiscard]] const int number_of_parts() const;
+        [[nodiscard]] const int wh() const;
         bool operator==(const Instance &rhs) const;
         bool operator!=(const Instance &rhs) const;
         bool operator<(const Instance &rhs) const;
