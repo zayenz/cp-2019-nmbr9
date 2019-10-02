@@ -34,4 +34,12 @@ to build the application.
 There will be an executable produced `src/nmbr9-cli` that uses the
 Gecode script command line driver for running the model.
 
+As an example, running the instance described in the paper is done using
 
+```
+$ nmbr9-cli -solutions 0 -play-type free -max-value 6 -copies 2 -deck-size 5 -grid-size 8 -max-layers 3
+```
+and running the full problem is done using
+```
+$ nmbr9-cli -solutions 0 -play-type free -max-value 9 -copies 2 -deck-size 20 -grid-size 20 -max-layers 7
+```
